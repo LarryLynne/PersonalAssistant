@@ -65,19 +65,64 @@ def finish(promt: str):
 
 @error_processor
 def add_phone(promt: str):
-    book.add_phone(str)
+    arguments = promt.split(" ")
+    l = len(arguments)
+    match l:
+        case 0:
+            raise ValueError(messages.get(1))
+        case 1:
+            raise ValueError(messages.get(1))
+        case 2:
+            book.add_phone(arguments[0], arguments[1])
+            return messages.get(-1)
+        case _:
+            raise ValueError(messages.get(2))
+
 
 @error_processor
 def add_address(promt: str):
-    book.add_address(str)
+    arguments = promt.split(" ")
+    l = len(arguments)
+    match l:
+        case 0:
+            raise ValueError(messages.get(1))
+        case 1:
+            raise ValueError(messages.get(1))
+        case 2:
+            book.add_address(arguments[0], arguments[1])
+            return messages.get(-1)
+        case _:
+            raise ValueError(messages.get(2))
 
 @error_processor
 def add_email(promt: str):
-    book.add_email(str)
+    arguments = promt.split(" ")
+    l = len(arguments)
+    match l:
+        case 0:
+            raise ValueError(messages.get(1))
+        case 1:
+            raise ValueError(messages.get(1))
+        case 2:
+            book.add_email(arguments[0], arguments[1])
+            return messages.get(-1)
+        case _:
+            raise ValueError(messages.get(2))
 
 @error_processor
 def add_birthday(promt: str):
-    book.add_birthday(str)
+    arguments = promt.split(" ")
+    l = len(arguments)
+    match l:
+        case 0:
+            raise ValueError(messages.get(1))
+        case 1:
+            raise ValueError(messages.get(1))
+        case 2:
+            book.add_birthday(arguments[0], arguments[1])
+            return messages.get(-1)
+        case _:
+            raise ValueError(messages.get(2))
 
 @error_processor
 def days_to_bd(promt: str):
@@ -89,9 +134,9 @@ def search(promt: str):
 
 OPERATIONS = {
     'hello': hello,
-    'add': add,
+    'add user': add,
     'change': add,
-    'phone': phone,
+    'find by phone': phone,
     'good bye': finish,
     'close': finish,
     'exit': finish,
