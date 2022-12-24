@@ -24,6 +24,7 @@ class Record:
     def add_phone(self, user_phone: str):
         self.phones.append(Phone(user_phone))
 
+
     def days_to_birthday(self):
         if self.birthday:
             today = datetime.now().date()
@@ -36,11 +37,12 @@ class Record:
         else:
             return 'ХЗ'
 
+
     def add_address(self, user_address: str):
         pass
 
     def add_email(self, user_email: str):
-        pass
+        self.emails.append(Phone(user_email))
 
     def add_birthday(self, user_birthday: str):
         pass
