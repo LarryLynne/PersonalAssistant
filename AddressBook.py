@@ -3,21 +3,23 @@ import Record
 import pickle
 
 class AddressBook(UserDict):
-    def load_book(self, filename: str = "data.ph"): # Уже запилено
+    def load_book(self, filename: str = "data.ph")->bool: # Уже запилено
         try:
             with open(filename, "rb") as f:
                 data = f.read()
                 self.data = pickle.loads(data)
+                return True
         except:
-            print("Address book not found")
+            return False
 
-    def save_book(self, filename: str = "data.ph"): # Уже запилено
+    def save_book(self, filename: str = "data.ph")->bool: # Уже запилено
         try:
             with open(filename, "wb") as f:
                 dump = pickle.dumps(self.data)
                 f.write(dump)
+                return True
         except:
-            print("Address book not saved")
+            return False
     
     def add_record(self, record: Record):
         pass
