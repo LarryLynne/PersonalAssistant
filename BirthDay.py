@@ -2,8 +2,7 @@ from Field import Field
 import re
 
 class BirthDay(Field):
-    @Field.value.setter
-    def value(self, value):
+    def __init__(self, value: str):
         if value:
             db = re.findall(r"[\d]{4}[-][\d]{2}[-][\d]{2}", value)
             if db:

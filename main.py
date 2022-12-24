@@ -64,6 +64,22 @@ def finish(promt: str):
     return messages.get(5)
 
 @error_processor
+def add_phone(promt: str):
+    book.add_phone(str)
+
+@error_processor
+def add_address(promt: str):
+    book.add_address(str)
+
+@error_processor
+def add_email(promt: str):
+    book.add_email(str)
+
+@error_processor
+def add_birthday(promt: str):
+    book.add_birthday(str)
+
+@error_processor
 def days_to_bd(promt: str):
     return book.find_user(promt).days_to_birthday()
 
@@ -84,8 +100,10 @@ OPERATIONS = {
     'search': search,
     'add address': add_address,
     'add email': add_email,
-    'add birthday': add_birthday
+    'add birthday': add_birthday,
+    'add phone': add_phone
 }
+
 
 @error_processor
 def parse(promt: str):
