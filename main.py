@@ -3,8 +3,11 @@ import re
 from datetime import datetime, timedelta
 from AddressBook import AddressBook
 from Record import Record
+from messages import messages
+
 
 book = AddressBook()
+
 
 def hello(promt: str):
     return 'How can I help you?'
@@ -62,7 +65,7 @@ OPERATIONS = {
     'close': finish,
     'exit': finish,
     'fuck off': finish,
-    'days to bd': days_to_bd,
+    'show birthdays in n days': days_to_bd,
     'search': search
 }
 
@@ -77,4 +80,20 @@ def parse(promt: str):
         arguments = promt[len(command + ' '):]
         return OPERATIONS.get(command)(arguments)
     else:
-        raise ValueError("Unknown command")
+        raise ValueError(messages.get(0))
+
+
+def main():
+    book.load_book()
+    os.system('CLS')
+    print(messages.get(-2))
+    while True:
+        command = input()
+        res = parse(command)
+        print(res)
+        if res == messages.get(5):
+            book.save_book()
+            break
+        
+
+main()
