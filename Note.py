@@ -1,6 +1,7 @@
-class Note:
-    def __init__(self, value: str) -> None:
-        self.value = value
+class Note():
+    def __init__(self, caption: str) -> None:
+        self.caption = caption
+        self.text = None
 
     def __str__(self) -> str:
-        return self.value
+        return f"{self.caption} : {self.text}"
