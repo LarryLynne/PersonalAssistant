@@ -28,7 +28,11 @@ class AddressBook(UserDict):
         pass
 
     def find_user(self, name: str) -> Record:
-        pass
+        res = self.get(name)
+        if res:
+            return res
+        else:
+            raise KeyError(f"User {name} not found")
 
     def search(self, promt):
         pass
