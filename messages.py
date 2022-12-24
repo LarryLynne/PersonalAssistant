@@ -15,5 +15,12 @@ messages = {
     11: '- User not found',
     12: '- Address book not saved',
     13: '- Cannot load address book',
-    14: '- Users not found'
+    14: '- Users not found',
+    15: '- Notebook not found',
+    16: '- Notebook not saved',
+    17: '- There is no tags',
+    18: '- There is no notes with tag ',
+    19: '- Search tag must start with # and contain at least 1 character ',
+    20: '- There is no notes with text ',
+    21: '- There is no note '
 }
