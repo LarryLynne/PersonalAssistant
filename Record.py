@@ -6,13 +6,13 @@ class Record:
         pass
     
     def add_phone(self, user_phone: str):
-        pass
+        self.phones.append(Phone(user_phone))
     
     def add_address(self, user_address: str):
         pass
 
     def add_email(self, user_email: str):
-        pass
+        self.emails.append(Phone(user_email))
 
     def add_birthday(self, user_birthday: str):
         pass
