@@ -6,33 +6,45 @@ from Record import Record
 from messages import messages
 
 
-book = AddressBook()
+def error_processor(func):
+    def inner(promt: str):
+        try:
+            return func(promt)
+        except ValueError as exception:
+            return exception.args[0]
+        except StopIteration as exception:
+            pass
+        except KeyError as exception:
+            return exception.args[0]
+    return inner
 
 
 def hello(promt: str):
     return 'How can I help you?'
 
+@error_processor
 def add(promt: str):
     arguments = promt.split(" ")
     l = len(arguments)
     match l:
         case 0:
-            raise ValueError('More arguments needed')
+            raise ValueError(messages.get(1))
         case 1:
-            raise ValueError('More arguments needed')
+            raise ValueError(messages.get(1))
         case 2:
             rec = Record(arguments[0],[ arguments[1]])
             book.add_record(rec)
-            return 'Done'
+            return messages.get(-1)
         case _:
-            raise ValueError('Too many arguments')
+            raise ValueError(messages.get(2))
 
+@error_processor
 def phone(promt: str):
     arguments = promt.split(" ")
     l = len(arguments)
     match l:
         case 0:
-            raise ValueError('More arguments needed')
+            raise ValueError(messages.get(1))
         case 1:
             try:
                 res = ""
@@ -41,18 +53,21 @@ def phone(promt: str):
                 if res:
                     return res
                 else:
-                    raise ValueError('Phone not found')
+                    raise ValueError(messages.get(4))
             except:
-                raise ValueError('Phone not found')
+                raise ValueError(messages.get(4))
         case _:
-            raise ValueError('messages.get(2)')
+            raise ValueError(messages.get(2))
 
+@error_processor
 def finish(promt: str):
-    return 'Good bye!'
+    return messages.get(5)
 
+@error_processor
 def days_to_bd(promt: str):
     return book.find_user(promt).days_to_birthday()
 
+@error_processor
 def search(promt: str):
     return book.search(promt)
 
@@ -66,9 +81,13 @@ OPERATIONS = {
     'exit': finish,
     'fuck off': finish,
     'show birthdays in n days': days_to_bd,
-    'search': search
+    'search': search,
+    'add address': add_address,
+    'add email': add_email,
+    'add birthday': add_birthday
 }
 
+@error_processor
 def parse(promt: str):
     command = ''
     arguments = ''
@@ -82,6 +101,7 @@ def parse(promt: str):
     else:
         raise ValueError(messages.get(0))
 
+book = AddressBook()
 
 def main():
     book.load_book()
@@ -94,6 +114,6 @@ def main():
         if res == messages.get(5):
             book.save_book()
             break
-        
+
 
 main()
