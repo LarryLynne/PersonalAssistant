@@ -32,7 +32,11 @@ def add(promt: str):
         case 1:
             raise ValueError(messages.get(1))
         case 2:
-            rec = Record(arguments[0],[ arguments[1]])
+            rec = Record(arguments[0], [arguments[1]])
+            book.add_record(rec)
+            return messages.get(-1)
+        case 3:
+            rec = Record(arguments[0], [arguments[1]], arguments[2])
             book.add_record(rec)
             return messages.get(-1)
         case _:
@@ -126,29 +130,39 @@ def add_birthday(promt: str):
 
 @error_processor
 def days_to_bd(promt: str):
-    return book.find_user(promt).days_to_birthday()
+    res = []
+    usr: Record
+    try:
+        n = int(promt)
+        users = list(book.data.keys())
+        for user in users:
+            usr = book.find_user(str(user))
+            if usr.days_to_birthday() == n:
+                res.append(str(usr))
+    except:
+        raise ValueError(messages.get(15))
+    return res
 
 @error_processor
 def search(promt: str):
     return book.search(promt)
 
 OPERATIONS = {
-    'hello': hello,
-    'add user': add,
+    'hello': hello, # +
+    'add user': add, # +
     'change': add,
-    'find by phone': phone,
-    'good bye': finish,
-    'close': finish,
-    'exit': finish,
-    'fuck off': finish,
-    'show birthdays in n days': days_to_bd,
+    'find phone': phone, # +
+    'good bye': finish, # +
+    'close': finish, # +
+    'exit': finish, # +
+    'fuck off': finish, # +
+    'show birthdays in n days': days_to_bd, # +
     'search': search,
     'add address': add_address,
     'add email': add_email,
     'add birthday': add_birthday,
-    'add phone': add_phone
+    'add phone': add_phone # +
 }
-
 
 @error_processor
 def parse(promt: str):
