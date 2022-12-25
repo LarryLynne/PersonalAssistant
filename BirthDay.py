@@ -8,13 +8,13 @@ class BirthDay(Field):
             if db:
                 db_parts = str(db[0]).split("-")
                 if int(db_parts[0]) >= 1930 and int(db_parts[1]) <= 12 and int(db_parts[2]) <= 31:
-                    self._value = (str(value))
+                    self.value = (str(value))
                 else:
                     raise ValueError('Invalid date of birth')
             else:
                 raise ValueError('Invalid date of birth')
         else:
-            self._value = (str(value))
+            self.value = (str(value))
 
     def __str__(self) -> str:
-        return str(self._value)
+        return str(self.value)

@@ -22,10 +22,11 @@ class AddressBook(UserDict):
             return False
     
     def add_record(self, record: Record):
-        if self.get(str(record.name)):
+        if self.data.get(str(record.name)):
             raise KeyError(f"User {record.name} already exists")
         else:
-            self.update({str(record.name): record})
+            self.data.update({str(record.name): record})
+            #self.update({str(record.name): record})
 
     def update_record(self, record: Record):
         if self.get(str(record.name)):
@@ -34,7 +35,7 @@ class AddressBook(UserDict):
              raise KeyError(f"User {record.name} not found")
    
     def find_user(self, name: str) -> Record:
-        res = self.get(name)
+        res = self.data.get(name)
         if res:
             return res
         else:

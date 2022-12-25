@@ -25,7 +25,7 @@ class Record:
         self.phones.append(Phone(user_phone))
 
 
-    def days_to_birthday(self):
+    def days_to_birthday(self)-> int:
         if self.birthday:
             today = datetime.now().date()
             db = datetime(year=datetime.now().year, month=int(str(self.birthday).split("-")[1]),
@@ -35,7 +35,7 @@ class Record:
                 db += timedelta(days=365)
             return (db - today).days
         else:
-            return 'ХЗ'
+            return -1
 
 
     def add_address(self, user_address: str):
