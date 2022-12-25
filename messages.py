@@ -17,5 +17,12 @@ messages = {
     12: Fore.RED + '- Address book not saved' + Fore.RESET,
     13: Fore.RED + '- Cannot load address book' + Fore.RESET,
     14: Fore.RED + '- Users not found' + Fore.RESET,
-    15: Fore.RED + '- Bad number of days' + Fore.RESET
+    15: '- Notebook not found',
+    16: '- Notebook not saved',
+    17: '- There is no tags',
+    18: '- There is no notes with tag ',
+    19: '- Search tag must start with # and contain at least 1 character ',
+    20: '- There is no notes with text ',
+    21: '- There is no note '
+    22: Fore.RED + '- Bad number of days' + Fore.RESET
 }
