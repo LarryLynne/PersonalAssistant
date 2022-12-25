@@ -1,6 +1,7 @@
 import pickle
 from Note import Note
 from collections import UserDict
+from messages import messages
 
 
 class NoteBook(UserDict):
@@ -25,13 +26,13 @@ class NoteBook(UserDict):
         try:
             del self[promt]
         except:
-            raise KeyError(f"There is no note '{promt}'")
+            raise KeyError(messages.get(21))  # 21 "There is no note '{promt}'"
 
     def update_note(self, note: Note):
         if self.get(str(note.caption)):
             self.update({str(note.caption): note})
         else:
-            raise KeyError(f"There is no notes '{note.caption}'")
+            raise KeyError(messages.get(21))  # 21 "There is no note '{note.caption}'"
 
     def find_note(self, promt: str):
         result = ''
@@ -41,7 +42,31 @@ class NoteBook(UserDict):
                 result += str(self.get(note)) + '\n'
         if result:
             return result
-        raise ValueError(f"There is no notes with text '{promt}'")
+        raise KeyError(messages.get(20))  # 20 "There is no notes with text '{promt}'"
+
+    def find_notes_tags(self, promt: str):  # поиск заметок, которые имеют данный тег
+        if len(promt) < 2 or promt[0] != '#':
+            raise KeyError(ValueError(messages.get(19),
+                                      promt))  # 19 "Search tag must start with # and contain at least 1 character '{promt}'"
+        result = ''
+        keys = self.keys()
+        for note in keys:
+            if promt in self.get(note).tags:
+                result += str(self.get(note)) + '\n'
+        if result:
+            return result
+        raise ValueError(messages.get(18))  # 18 "There is no notes with tag '{promt}'"
+
+    def show_all_tags(self):  # выводит список уникальных тегов, которые есть среди всех заметок
+        result = []
+        keys = self.keys()
+        for note in keys:
+            for i in self.get(note).tags:
+                if i not in result:
+                    result.append(i)
+        if result:
+            return result
+        raise ValueError(messages.get(17))  # 17 "There is no tags"
 
     def load_book(self, filename: str = "Notes.not"):
         try:
@@ -49,7 +74,7 @@ class NoteBook(UserDict):
                 data = f.read()
                 self.data = pickle.loads(data)
         except:
-            print("Notebook not found")
+            print(messages.get(15))  # 15 "Notebook not found"
 
     def save_book(self, filename: str = "Notes.not"):
         try:
@@ -57,4 +82,4 @@ class NoteBook(UserDict):
                 dump = pickle.dumps(self.data)
                 f.write(dump)
         except:
-            print("Notebook not saved")
+            print(messages.get(16))  # 16 "Notebook not saved"
