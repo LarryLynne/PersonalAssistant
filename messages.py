@@ -20,9 +20,9 @@ messages = {
     15: Fore.RED + '- Notebook not found' + Fore.RESET,
     16: Fore.RED + '- Notebook not saved' + Fore.RESET,
     17: Fore.RED + '- There is no tags' + Fore.RESET,
-    18: Fore.RED + '- There is no notes with tag ' + Fore.RsESET,
-    19: Fore.RED + '- Search tag must start with # and contain at least 1 character ' + Fore.RESET,
-    20: Fore.RED + '- There is no notes with text ' + Fore.RESET,
-    21: Fore.RED + '- There is no note ' + Fore.RESET,
+    18: Fore.RED + '- There is no notes with search tag' + Fore.RsESET,
+    19: Fore.RED + '- Search tag must start with # and contain at least 1 character' + Fore.RESET,
+    20: Fore.RED + '- There is no notes with search text' + Fore.RESET,
+    21: Fore.RED + '- There is no note' + Fore.RESET,
     22: Fore.RED + '- Bad number of days' + Fore.RESET
 }
