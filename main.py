@@ -140,7 +140,7 @@ def days_to_bd(promt: str):
             if usr.days_to_birthday() == n:
                 res.append(str(usr))
     except:
-        raise ValueError(messages.get(15))
+        raise ValueError(messages.get(22))
     return res
 
 @error_processor
