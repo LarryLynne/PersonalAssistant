@@ -1,8 +1,9 @@
 class Note():
-    def __init__(self, caption: str) -> None:
+    def __init__(self, caption: str, text: str) -> None:
         self.caption = caption
-        self._text = None
         self._tags = []
+        self._text = None
+        self.text = text
 
     @property
     def text(self):
