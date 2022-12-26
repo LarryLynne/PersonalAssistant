@@ -2,7 +2,7 @@ import pickle
 from Note import Note
 from collections import UserDict
 from messages import messages
-
+import os
 
 class NoteBook(UserDict):
     def __init__(self):
@@ -43,9 +43,9 @@ class NoteBook(UserDict):
         raise KeyError(messages.get(20))  # 20 "There is no notes with text '{promt}'"
 
     def find_notes_tags(self, promt: str):  # поиск заметок, которые имеют данный тег
+        print(promt)
         if len(promt) < 2 or promt[0] != '#':
-            raise KeyError(ValueError(messages.get(19),
-                                      promt))  # 19 "Search tag must start with # and contain at least 1 character '{promt}'"
+            raise KeyError(ValueError(messages.get(19), promt))  # 19 "Search tag must start with # and contain at least 1 character '{promt}'"
         result = ''
         keys = self.keys()
         for note in keys:
@@ -66,7 +66,7 @@ class NoteBook(UserDict):
             return result
         raise ValueError(messages.get(17))  # 17 "There is no tags"
 
-    def load_book(self, filename: str = "Notes.not"):
+    def load_book(self, filename: str = os.path.join(os.path.join(os.path.expanduser('~')), 'Documents', 'notes.not')):
         try:
             with open(filename, "rb") as f:
                 data = f.read()
@@ -74,7 +74,7 @@ class NoteBook(UserDict):
         except:
             print(messages.get(15))  # 15 "Notebook not found"
 
-    def save_book(self, filename: str = "Notes.not"):
+    def save_book(self, filename: str = os.path.join(os.path.join(os.path.expanduser('~')), 'Documents', 'notes.not')):
         try:
             with open(filename, "wb") as f:
                 dump = pickle.dumps(self.data)

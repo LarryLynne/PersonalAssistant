@@ -6,24 +6,32 @@ from Email import Email
 from Address import Address
 
 class Record:
+    name: Name
+    phones: list[Phone]
+    birthday: BirthDay
+    #addresses: list[Address]
+    e_mails: list[Email]
+
     def __init__(self, user_name: str, user_phones: tuple = (), user_birthday: str = '') -> None:
         self.name: Name = Name(user_name)
         self.phones: list[Phone] = list()
         for uph in user_phones:
             self.add_phone(uph)
-
         self.birthday: BirthDay = BirthDay(user_birthday)
-        self.address: str
-        self.emails: list[Email] = list()
+        self.e_mails: list[Email] = list()
+        self.addrs: list[Address] = list()
 
     def __str__(self) -> str:
         res = str(self.name) + ", phones: "
         for ph in self.phones:
             res += str(ph) + ", "
         res += "birthday: " + str(self.birthday) + ", "
-        for em in self.emails:
+        res += "e-mails: "
+        for em in self.e_mails:
             res += str(em) + ", "
-        res += "address: " + self.address
+        res += "addresses: "
+        for ad in self.addrs:
+            res += str(ad)
 
         return res
 
@@ -42,11 +50,11 @@ class Record:
         else:
             return -1
 
-    def add_address(self, user_address: str):
-       self.address = Address(user_address)
+    def add_addr(self, user_address: str):
+        self.addrs.append(Address(user_address))
 
     def add_email(self, user_email: str):
-        self.emails.append(Phone(user_email))
+        self.e_mails.append(Email(user_email))
 
     def add_birthday(self, user_birthday: str):
         self.birthday = BirthDay(user_birthday)

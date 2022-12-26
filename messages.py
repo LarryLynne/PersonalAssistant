@@ -7,7 +7,7 @@ messages = {
     2: Fore.RED + '- Too many arguments' + Fore.RESET,
     3: Fore.RED + '- Incorrect phone' + Fore.RESET,
     4: Fore.RED + '- Phone not found' + Fore.RESET,
-    5: Fore.MAGENTA + '- Good bye!' + Fore.RESET,
+    5: Fore.CYAN + '- Good bye!' + Fore.RESET,
     6: Fore.CYAN + '- How can I help you?' + Fore.RESET,
     7: Fore.RED + '- There is no any records in phonebook' + Fore.RESET,
     8: Fore.RED + '- Incorrect phone number' + Fore.RESET,

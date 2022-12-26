@@ -1,10 +1,11 @@
 from collections import UserDict
-import Record
+from Record import Record
 import pickle
 from messages import messages
+import os
 
 class AddressBook(UserDict):
-    def load_book(self, filename: str = "data.ph")->bool: # Уже запилено
+    def load_book(self, filename: str = os.path.join(os.path.join(os.path.expanduser('~')), 'Documents', 'PhoneBook.ph'))->bool: # Уже запилено
         try:
             with open(filename, "rb") as f:
                 data = f.read()
@@ -13,7 +14,7 @@ class AddressBook(UserDict):
         except:
             return False
 
-    def save_book(self, filename: str = "data.ph")->bool: # Уже запилено
+    def save_book(self, filename: str = os.path.join(os.path.join(os.path.expanduser('~')), 'Documents', 'PhoneBook.ph'))->bool: # Уже запилено
         try:
             with open(filename, "wb") as f:
                 dump = pickle.dumps(self.data)
@@ -60,10 +61,9 @@ class AddressBook(UserDict):
             raise KeyError(f"User {user} not found")
     
     def add_address(self, user: str, address: str):
-        usr: Record
-        usr = self.find_user(user)
-        if usr:
-            usr.add_address = address
+        usr1 = self.find_user(user)
+        if usr1:
+            usr1.add_addr(address)
         else:
             raise KeyError(f"User {user} not found")
 
