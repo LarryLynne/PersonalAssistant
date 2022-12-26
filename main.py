@@ -4,8 +4,8 @@ from datetime import datetime, timedelta
 from AddressBook import AddressBook
 from Record import Record
 from messages import messages
-from Note import Note
-from NoteBook import NoteBook
+from note import Note
+from notebook import NoteBook
 from colorama import Fore
 
 book = AddressBook()
@@ -280,7 +280,7 @@ def guess_command(promt: str)-> list:
     return list(poss_cmds)
 
 def main():
-    book.load_book()
+    book.load_book('PhoneBook.ph')
     os.system('CLS')
     print(messages.get(-2))
     while True:
@@ -288,8 +288,8 @@ def main():
         res = parse(command)
         print(res)
         if res == messages.get(5):
-            book.save_book()
-            notes.save_book()
+            book.save_book('PhoneBook.ph')
+            notes.save_book('Notes.not')
             break
 
 main()
