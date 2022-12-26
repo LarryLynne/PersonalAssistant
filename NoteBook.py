@@ -9,9 +9,6 @@ class NoteBook(UserDict):
         super().__init__()
         self.load_book()
 
-    def __del__(self):
-        self.save_book()
-
     def get_all_notes(self):
         result = ''
         keys = self.keys()
@@ -25,6 +22,7 @@ class NoteBook(UserDict):
     def del_note(self, promt: str):
         try:
             del self[promt]
+            return messages.get(-1)
         except:
             raise KeyError(messages.get(21))  # 21 "There is no note '{promt}'"
 

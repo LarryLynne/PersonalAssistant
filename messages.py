@@ -24,5 +24,9 @@ messages = {
     19: Fore.RED + '- Search tag must start with # and contain at least 1 character' + Fore.RESET,
     20: Fore.RED + '- There is no notes with search text' + Fore.RESET,
     21: Fore.RED + '- There is no note' + Fore.RESET,
-    22: Fore.RED + '- Bad number of days' + Fore.RESET
+    22: Fore.RED + '- Bad number of days' + Fore.RESET,
+    23: Fore.RED + '- Incorrect email' + Fore.RESET,
+    24: Fore.YELLOW + '- Cannot understand your command, but I tried to find the similar. Select the number of possible command' + Fore.RESET,
+    25: Fore.YELLOW + '- Write command number here:' + Fore.RESET,
+    26: Fore.YELLOW + '- Write arguments for your command:' + Fore.RESET,
 }

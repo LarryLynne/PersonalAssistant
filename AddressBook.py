@@ -1,6 +1,7 @@
 from collections import UserDict
 import Record
 import pickle
+from messages import messages
 
 class AddressBook(UserDict):
     def load_book(self, filename: str = "data.ph")->bool: # Уже запилено
@@ -26,7 +27,6 @@ class AddressBook(UserDict):
             raise KeyError(f"User {record.name} already exists")
         else:
             self.data.update({str(record.name): record})
-            #self.update({str(record.name): record})
 
     def update_record(self, record: Record):
         if self.get(str(record.name)):
@@ -42,7 +42,15 @@ class AddressBook(UserDict):
             raise KeyError(f"User {name} not found")
 
     def search(self, promt):
-        pass
+        res = ""
+        users = self.values()
+        for user in users:
+            if promt in str(user):
+                res += str(user) + "\n"
+        if res:
+            return res
+        else:
+            raise KeyError(messages.get(14))  
     
     def add_phone(self, user: str, phone: str): # пхоня передается в формате 380999279480. Формат хранения либо оставить такой, либо обсудить
         usr = self.find_user(user)
@@ -52,7 +60,12 @@ class AddressBook(UserDict):
             raise KeyError(f"User {user} not found")
     
     def add_address(self, user: str, address: str):
-        pass
+        usr: Record
+        usr = self.find_user(user)
+        if usr:
+            usr.add_address = address
+        else:
+            raise KeyError(f"User {user} not found")
 
     def add_email(self, user: str, email: str):
         usr = self.find_user(user)
@@ -62,7 +75,14 @@ class AddressBook(UserDict):
             raise KeyError(f"User {user} not found")
 
     def add_birthday(self, user: str, birthday: str):
-        pass
+        usr = self.find_user(user)
+        if usr:
+            usr.add_birthday(birthday)
+        else:
+            raise KeyError(f"User {user} not found")
 
-    def find_users_by_days_to_bd(self, count: int):
-        pass
+    def delete_contact(self, user: str):
+        try:
+            self.data.pop(user)
+        except:
+            raise KeyError(f"User {user} not found")

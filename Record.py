@@ -3,7 +3,7 @@ from Phone import Phone
 from Name import Name
 from BirthDay import BirthDay
 from Email import Email
-
+from Address import Address
 
 class Record:
     def __init__(self, user_name: str, user_phones: tuple = (), user_birthday: str = '') -> None:
@@ -13,17 +13,22 @@ class Record:
             self.add_phone(uph)
 
         self.birthday: BirthDay = BirthDay(user_birthday)
+        self.address: str
+        self.emails: list[Email] = list()
 
     def __str__(self) -> str:
         res = str(self.name) + ", phones: "
         for ph in self.phones:
             res += str(ph) + ", "
-        res += "birthday: " + str(self.birthday)
+        res += "birthday: " + str(self.birthday) + ", "
+        for em in self.emails:
+            res += str(em) + ", "
+        res += "address: " + self.address
+
         return res
 
     def add_phone(self, user_phone: str):
         self.phones.append(Phone(user_phone))
-
 
     def days_to_birthday(self)-> int:
         if self.birthday:
@@ -37,12 +42,11 @@ class Record:
         else:
             return -1
 
-
     def add_address(self, user_address: str):
-        pass
+       self.address = Address(user_address)
 
     def add_email(self, user_email: str):
         self.emails.append(Phone(user_email))
 
     def add_birthday(self, user_birthday: str):
-        pass
+        self.birthday = BirthDay(user_birthday)

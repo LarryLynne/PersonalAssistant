@@ -1,5 +1,6 @@
 from Field import Field
 import re
+from messages import messages
 
 class Email(Field):
     def __init__(self, value: str) -> None:
@@ -12,7 +13,7 @@ class Email(Field):
             if ph:
                 self._value = (str(value))
             else:
-                raise ValueError("Incorrect email")
+                raise ValueError(messages.get(23))
         else:
             self._value = (str(value))
 
