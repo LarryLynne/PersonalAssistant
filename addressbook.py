@@ -1,5 +1,5 @@
 from collections import UserDict
-from Record import Record
+from record import Record
 import pickle
 from messages import messages
 import os

@@ -1,8 +1,8 @@
 import os
 import re
 from datetime import datetime, timedelta
-from AddressBook import AddressBook
-from Record import Record
+from addressbook import AddressBook
+from record import Record
 from messages import messages
 from note import Note
 from notebook import NoteBook

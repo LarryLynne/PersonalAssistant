@@ -1,9 +1,9 @@
 from datetime import datetime, timedelta
-from Phone import Phone
-from Name import Name
-from BirthDay import BirthDay
-from Email import Email
-from Address import Address
+from phone import Phone
+from name import Name
+from birthday import BirthDay
+from email import Email
+from address import Address
 
 class Record:
     name: Name
