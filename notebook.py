@@ -6,7 +6,10 @@ from book_saver import BookSaver
 class NoteBook(UserDict, BookSaver):
     def __init__(self):
         super().__init__()
-        self.load_book('Notes.not')
+        try:
+            self.load_book('Notes.not')
+        except:
+            pass
 
     def get_all_notes(self):
         result = ''

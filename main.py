@@ -1,12 +1,13 @@
 import os
-import re
-from datetime import datetime, timedelta
+#import re
+#from datetime import datetime, timedelta
 from addressbook import AddressBook
 from record import Record
 from messages import messages
 from note import Note
 from notebook import NoteBook
-from colorama import Fore
+from colorama import Fore, Style
+from murzilka import commands
 
 book = AddressBook()
 notes = NoteBook()
@@ -206,6 +207,13 @@ def find_user(promt: str):
 def find_notes_by_tag(promt: str):
     return Fore.BLUE + str(notes.find_notes_tags(promt)) + Fore.RESET
 
+
+def show_help(promt: str):
+    res = ''
+    for c in commands:
+        res += "{:<30}{:<30}".format(c, commands.get(c)) + '\n'
+    return Fore.GREEN + Style.BRIGHT + res + Style.RESET_ALL + Fore.RESET
+
 OPERATIONS = {
     'hello': hello,
     'add user': add,
@@ -230,6 +238,7 @@ OPERATIONS = {
     'get all notes': get_all_notes,
     'update note': update_note,
     'get notes tags': find_notes_by_tag,
+    'help': show_help,
 }
 
 @error_processor

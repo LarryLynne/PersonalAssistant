@@ -1,6 +1,9 @@
 import os
 import pickle
 from messages import messages
+#from note import Note
+#from notebook import NoteBook
+
 
 
 class BookSaver:
@@ -11,7 +14,7 @@ class BookSaver:
                 data = f.read()
                 self.data = pickle.loads(data)
         except:
-            print(messages.get(13).format('filename', filename))  # 13: '- Cannot load file {filename}'
+            pass
 
     def save_book(self, filename: str):
         try:

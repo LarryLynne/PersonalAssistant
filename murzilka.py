@@ -26,5 +26,4 @@ commands = {
 
 
 for c in commands:
-    #print((c + '{:<20}'.commands.get(c)))
-    print("{:<30}{:<30}".format(c, commands.get(c)))  # |left      |**center**|     right|
+    print("{:<30}{:<30}".format(c, commands.get(c)))
