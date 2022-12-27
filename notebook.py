@@ -1,13 +1,12 @@
-import pickle
-from Note import Note
+from note import Note
 from collections import UserDict
 from messages import messages
-import os
+from book_saver import BookSaver
 
-class NoteBook(UserDict):
+class NoteBook(UserDict, BookSaver):
     def __init__(self):
         super().__init__()
-        self.load_book()
+        self.load_book('Notes.not')
 
     def get_all_notes(self):
         result = ''
@@ -65,19 +64,3 @@ class NoteBook(UserDict):
         if result:
             return result
         raise ValueError(messages.get(17))  # 17 "There is no tags"
-
-    def load_book(self, filename: str = os.path.join(os.path.join(os.path.expanduser('~')), 'Documents', 'notes.not')):
-        try:
-            with open(filename, "rb") as f:
-                data = f.read()
-                self.data = pickle.loads(data)
-        except:
-            print(messages.get(15))  # 15 "Notebook not found"
-
-    def save_book(self, filename: str = os.path.join(os.path.join(os.path.expanduser('~')), 'Documents', 'notes.not')):
-        try:
-            with open(filename, "wb") as f:
-                dump = pickle.dumps(self.data)
-                f.write(dump)
-        except:
-            print(messages.get(16))  # 16 "Notebook not saved"

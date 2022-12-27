@@ -1,28 +1,12 @@
 from collections import UserDict
-from Record import Record
+from record import Record
 import pickle
 from messages import messages
 import os
+from book_saver import BookSaver
 
-class AddressBook(UserDict):
-    def load_book(self, filename: str = os.path.join(os.path.join(os.path.expanduser('~')), 'Documents', 'PhoneBook.ph'))->bool: # Уже запилено
-        try:
-            with open(filename, "rb") as f:
-                data = f.read()
-                self.data = pickle.loads(data)
-                return True
-        except:
-            return False
+class AddressBook(UserDict, BookSaver):
 
-    def save_book(self, filename: str = os.path.join(os.path.join(os.path.expanduser('~')), 'Documents', 'PhoneBook.ph'))->bool: # Уже запилено
-        try:
-            with open(filename, "wb") as f:
-                dump = pickle.dumps(self.data)
-                f.write(dump)
-                return True
-        except:
-            return False
-    
     def add_record(self, record: Record):
         if self.data.get(str(record.name)):
             raise KeyError(f"User {record.name} already exists")
