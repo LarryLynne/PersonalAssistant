@@ -20,7 +20,7 @@ commands = {
     'show all tags': '[     ]',
     'get all notes': '[     ]',
     'update note': '[note caption][text]',
-    'find notes tags': '[*tag]',
+    'get notes tags': '[*tag]',
 }
 
 

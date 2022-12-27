@@ -18,8 +18,6 @@ def error_processor(func):
             return func(promt)
         except ValueError as exception:
             return Fore.RED + exception.args[0] + Fore.RESET
-        except StopIteration as exception:
-            pass
         except KeyError as exception:
             return Fore.RED + exception.args[0] + Fore.RESET
     return inner
@@ -203,9 +201,13 @@ def update_note(promt: str):
 def find_user(promt: str):
     return Fore.BLUE + str(book.find_user(promt)) + Fore.RESET
 
-
+@error_processor
 def find_notes_by_tag(promt: str):
-    return Fore.BLUE + str(notes.find_notes_tags(promt)) + Fore.RESET
+    try:
+        res = notes.find_notes_tags(promt)
+        return Fore.BLUE + str(res) + Fore.RESET
+    except:
+        raise ValueError(messages.get(18))
 
 
 def show_help(promt: str):
