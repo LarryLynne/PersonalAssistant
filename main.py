@@ -139,7 +139,10 @@ def days_to_bd(promt: str):
                 res.append(Fore.BLUE + str(usr) + Fore.RESET)
     except:
         raise ValueError(messages.get(22))
-    return res
+    if res:
+        return res
+    else:
+        return messages.get(14)
 
 @error_processor
 def search(promt: str):
@@ -204,29 +207,29 @@ def find_notes_by_tag(promt: str):
     return Fore.BLUE + str(notes.find_notes_tags(promt)) + Fore.RESET
 
 OPERATIONS = {
-    'hello': hello, # +
-    'add user': add, # +
-    'find phone': phone, # +
-    'find user': find_user, # +
-    'good bye': finish, # +
-    'close': finish, # +
-    'exit': finish, # +
-    'fuck off': finish, # +
-    'show birthdays in n days': days_to_bd, # +
-    'search': search, # +
-    'add address': add_address, # +
-    'add email': add_email, # +
-    'add birthday': add_birthday, # +
-    'add phone': add_phone, # +
-    'delete user': delete_contact, # +
-    'delete contact': delete_contact, # +
-    'write note': write_note, # +
+    'hello': hello,
+    'add user': add,
+    'find phone': phone,
+    'find user': find_user,
+    'good bye': finish,
+    'close': finish,
+    'exit': finish,
+    'fuck off': finish,
+    'show birthdays in n days': days_to_bd,
+    'search': search,
+    'add address': add_address,
+    'add email': add_email,
+    'add birthday': add_birthday,
+    'add phone': add_phone,
+    'delete user': delete_contact,
+    'delete contact': delete_contact,
+    'write note': write_note,
     'find note': find_note,
     'delete note': del_note,
     'show all tags': show_all_tags,
     'get all notes': get_all_notes,
     'update note': update_note,
-    'find notes tags': find_notes_by_tag,
+    'get notes tags': find_notes_by_tag,
 }
 
 @error_processor
