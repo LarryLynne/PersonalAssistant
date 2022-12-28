@@ -22,8 +22,3 @@ commands = {
     'update note': '[note caption][text]',
     'get notes tags': '[*tag]',
 }
-
-
-
-for c in commands:
-    print("{:<30}{:<30}".format(c, commands.get(c)))
