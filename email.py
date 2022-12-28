@@ -1,5 +1,5 @@
 import re
-from messages import messages
+from PersonalAssistant.messages import messages
 
 class Email:
     def __init__(self, value: str):

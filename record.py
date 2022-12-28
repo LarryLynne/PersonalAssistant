@@ -1,9 +1,9 @@
 from datetime import datetime, timedelta
-from phone import Phone
-from name import Name
-from birthday import BirthDay
-from email import Email
-from address import Address
+from PersonalAssistant.phone import Phone
+from PersonalAssistant.name import Name
+from PersonalAssistant.birthday import BirthDay
+from PersonalAssistant.email import Email
+from PersonalAssistant.address import Address
 
 class Record:
     def __init__(self, user_name: str, user_phones: tuple = (), user_birthday: str = '') -> None:

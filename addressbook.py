@@ -1,9 +1,7 @@
 from collections import UserDict
-from record import Record
-import pickle
-from messages import messages
-import os
-from book_saver import BookSaver
+from PersonalAssistant.record import Record
+from PersonalAssistant.messages import messages
+from PersonalAssistant.book_saver import BookSaver
 
 class AddressBook(UserDict, BookSaver):
 

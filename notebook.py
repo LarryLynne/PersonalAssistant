@@ -1,7 +1,7 @@
-from note import Note
+from PersonalAssistant.note import Note
 from collections import UserDict
-from messages import messages
-from book_saver import BookSaver
+from PersonalAssistant.messages import messages
+from PersonalAssistant.book_saver import BookSaver
 
 class NoteBook(UserDict, BookSaver):
     def __init__(self):

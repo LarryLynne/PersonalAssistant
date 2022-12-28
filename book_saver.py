@@ -1,6 +1,6 @@
 import os
 import pickle
-from messages import messages
+from PersonalAssistant.messages import messages
 #from note import Note
 #from notebook import NoteBook
 

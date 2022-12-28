@@ -1,13 +1,11 @@
 import os
-#import re
-#from datetime import datetime, timedelta
-from addressbook import AddressBook
-from record import Record
-from messages import messages
-from note import Note
-from notebook import NoteBook
+from PersonalAssistant.addressbook import AddressBook
+from PersonalAssistant.record import Record
+from PersonalAssistant.messages import messages
+from PersonalAssistant.note import Note
+from PersonalAssistant.notebook import NoteBook
 from colorama import Fore, Style
-from murzilka import commands
+from PersonalAssistant.murzilka import commands
 
 book = AddressBook()
 notes = NoteBook()
@@ -127,7 +125,7 @@ def add_birthday(promt: str):
 
 @error_processor
 def days_to_bd(promt: str):
-    res = []
+    res = ''
     usr: Record
     try:
         n = int(promt)
@@ -135,7 +133,7 @@ def days_to_bd(promt: str):
         for user in users:
             usr = book.find_user(str(user))
             if usr.days_to_birthday() == n:
-                res.append(Fore.BLUE + str(usr) + Fore.RESET)
+                res+=(Fore.BLUE + str(usr) + Fore.RESET) + '\n'
     except:
         raise ValueError(messages.get(22))
     if res:
@@ -306,4 +304,4 @@ def main():
             notes.save_book('Notes.not')
             break
 
-main()
+#main()
